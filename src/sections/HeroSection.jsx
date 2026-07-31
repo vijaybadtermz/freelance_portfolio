@@ -21,7 +21,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-md"
+              className="hidden lg:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-md"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
               <span className="text-xs font-mono text-slate-300">{PERSONAL_INFO.availability}</span>
@@ -94,6 +94,17 @@ export const HeroSection = () => {
               <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-amber-400" /> Gemini AI</span>
             </motion.div>
           </div>
+
+          {/* Mobile-only availability badge, placed above the developer visual */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="order-first inline-flex w-fit items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-md lg:hidden"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            <span className="text-xs font-mono text-slate-300">{PERSONAL_INFO.availability}</span>
+          </motion.div>
 
           {/* Right Column Modern Developer Photo Card Showcase */}
           <motion.div
