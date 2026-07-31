@@ -100,7 +100,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 relative"
+            className="order-first lg:order-last lg:col-span-5 relative"
           >
             <HeroDeveloperVisual />
           </motion.div>
