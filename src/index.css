@@ -7,9 +7,13 @@
     --font-mono: 'JetBrains Mono', monospace;
   }
   
-  html {
+  html, body {
     font-family: var(--font-sans);
     color-scheme: dark;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -43,25 +47,35 @@
 }
 
 .glass-card {
-  background: rgba(13, 17, 26, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(13, 17, 26, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Optimize glass-card on mobile viewport to prevent scroll flickering */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(11, 15, 24, 0.95);
+  }
+}
+
 .glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .glass-card-hover:hover {
-  background: rgba(19, 25, 38, 0.85);
-  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(19, 25, 38, 0.92);
+  border-color: rgba(6, 182, 212, 0.35);
   box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #07090e;
@@ -84,6 +98,7 @@
   display: flex;
   width: max-content;
   animation: ticker 35s linear infinite;
+  will-change: transform;
 }
 
 .animate-ticker:hover {
@@ -98,6 +113,7 @@
 
 .animate-radar {
   animation: radar-sweep 4s linear infinite;
+  will-change: transform;
 }
 
 /* Text Shimmer Effect */

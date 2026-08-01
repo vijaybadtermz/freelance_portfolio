@@ -96,10 +96,6 @@ export const Navbar = ({ activeSection }) => {
 
           {/* Mobile Menu Toggle Button */}
           <button
-            download="Vijayakumar_K_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            // onClick={() => setMobileMenuOpen(false)}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 hover:text-cyan-400 transition-colors"
             aria-label="Toggle Navigation Menu"

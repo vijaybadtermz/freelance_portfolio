@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeader } from '../components/ui/SectionHeader';
-import { Globe, Smartphone, Monitor, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Globe, Smartphone, Monitor, Cpu, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 import { CAPABILITIES } from '../data/portfolioData';
 
-export const AboutSection = () => {
+export const AboutSection = ({ onSelectCapability }) => {
   const iconMap = {
     web: Globe,
     android: Smartphone,
@@ -35,7 +35,7 @@ export const AboutSection = () => {
           subtitle="I work across the complete application lifecycle—from UI architecture and frontend design to backend APIs, database modeling, role authentication, hardware integrations, desktop packaging, and cloud deployment."
         />
 
-        {/* 4 Visual Capability Cards Grid */}
+        {/* 4 Clickable Visual Capability Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {CAPABILITIES.map((cap, idx) => {
             const IconComponent = iconMap[cap.id] || Globe;
@@ -46,12 +46,27 @@ export const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-4 group"
+                onClick={() => onSelectCapability && onSelectCapability(cap)}
+                className="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-4 group cursor-pointer border border-slate-800/80 hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-300"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectCapability && onSelectCapability(cap);
+                  }
+                }}
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300 shadow-md mb-4">
-                    <IconComponent className="w-6 h-6" />
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300 shadow-md">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-mono text-cyan-400/80 bg-cyan-950/40 border border-cyan-500/20 px-2 py-0.5 rounded-full flex items-center gap-1 group-hover:border-cyan-400 transition-colors">
+                      <Sparkles className="w-3 h-3" /> Explore Details
+                    </span>
                   </div>
+
                   <h3 className="text-xl font-display font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
                     {cap.title}
                   </h3>
@@ -59,8 +74,8 @@ export const AboutSection = () => {
                   <p className="text-sm font-sans text-slate-300 leading-relaxed">{cap.desc}</p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
-                  <span>Full Lifecycle</span>
+                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400 group-hover:text-cyan-300 transition-colors">
+                  <span>Explore Architecture</span>
                   <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.div>
